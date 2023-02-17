@@ -18,13 +18,22 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        val observer = Observer<Any> { renderData(it) } //выполняет метод renderData, как только LiveData обновляет данные которые она хранит
-        viewModel.getData().observe(viewLifecycleOwner, observer)
-        // если Данные, которые хранит LiveData, изменятся, Observer сразу об этом узнает и вызовет метод renderData, куда передаст новые данные
+        val observer =
+            Observer<Any> { renderData(it) } //выполняет метод renderData, как только LiveData обновляет данные которые она хранит
+        viewModel.getData().observe(
+            viewLifecycleOwner,
+            observer
+        ) // если Данные, которые хранит LiveData, изменятся, Observer сразу об этом узнает и вызовет метод renderData, куда передаст новые данные
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 
     private fun renderData(data: Any) { //В качестве аргумента renderData принимает объект, возвращаемый LiveData
@@ -34,7 +43,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
