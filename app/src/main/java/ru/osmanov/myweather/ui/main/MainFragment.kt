@@ -1,14 +1,14 @@
 package ru.osmanov.myweather.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import ru.osmanov.myweather.R
+import androidx.lifecycle.ViewModelProvider
+import ru.osmanov.myweather.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
@@ -20,7 +20,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         val observer =
             Observer<Any> { renderData(it) } //выполняет метод renderData, как только LiveData обновляет данные которые она хранит
@@ -31,20 +31,19 @@ class MainFragment : Fragment() {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    private fun renderData(data: Any) { //В качестве аргумента renderData принимает объект, возвращаемый LiveData
+    private fun renderData(data:Any) { //В качестве аргумента renderData принимает объект, возвращаемый LiveData
         Toast.makeText(context, "data", Toast.LENGTH_SHORT).show()
     }
 
+    private lateinit var binding: FragmentMainBinding
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+    ): View {
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 }
