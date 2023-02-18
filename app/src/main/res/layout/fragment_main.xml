@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/textView_marginTop"
             android:text="@string/cityNameDerbent"
-            android:textSize="30sp"
+            android:textSize="@dimen/textSize"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/textView_marginTop"
             android:text="@string/tempLabel"
-            android:textSize="30sp"
+            android:textSize="@dimen/textSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cityCoordinates" />
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/textView_marginTop"
             android:text="@string/defaultTempValue"
-            android:textSize="30sp"
+            android:textSize="@dimen/textSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tempLabel" />
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/textView_marginTop"
             android:text="@string/feelsLikeLabel"
-            android:textSize="30sp"
+            android:textSize="@dimen/textSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tempValue" />
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/textView_marginTop"
             android:text="@string/defaultFeelsLikeValue"
-            android:textSize="30sp"
+            android:textSize="@dimen/textSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/feelsLikeLabel" />
