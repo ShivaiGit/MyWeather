@@ -1,17 +1,17 @@
-package ru.osmanov.myweather.ui.main
+package ru.osmanov.myweather.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import ru.osmanov.myweather.AppState
+import ru.osmanov.myweather.viewmodel.AppState
 import ru.osmanov.myweather.R
-import ru.osmanov.myweather.Weather
+import ru.osmanov.myweather.repository.Weather
 import ru.osmanov.myweather.databinding.FragmentMainBinding
+import ru.osmanov.myweather.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
     companion object {
@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.getLiveData().observe(viewLifecycleOwner) { renderData(it) }
     // если Данные, которые хранит LiveData, изменятся, Observer сразу об этом узнает и вызовет метод renderData, куда передаст новые данные
         viewModel.getWeatherFromLocaleSource()

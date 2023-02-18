@@ -1,4 +1,4 @@
-package ru.osmanov.myweather
+package ru.osmanov.myweather.repository
 
 data class Weather(val city: City = getDefaultCity(), val temperature: Int = 0, val feelsLike: Int = 0)
 

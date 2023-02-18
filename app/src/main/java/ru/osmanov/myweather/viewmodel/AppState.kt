@@ -1,4 +1,6 @@
-package ru.osmanov.myweather
+package ru.osmanov.myweather.viewmodel
+
+import ru.osmanov.myweather.repository.Weather
 
 sealed class AppState {
     data class Success(val weatherData: Weather) : AppState() //данные получены

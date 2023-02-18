@@ -1,4 +1,4 @@
-package ru.osmanov.myweather
+package ru.osmanov.myweather.repository
 
 class RepositoryImpl: Repository {
     override fun getWeatherFromServer(): Weather {

@@ -1,10 +1,9 @@
-package ru.osmanov.myweather.ui.main
+package ru.osmanov.myweather.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.osmanov.myweather.AppState
-import ru.osmanov.myweather.Repository
-import ru.osmanov.myweather.RepositoryImpl
+import ru.osmanov.myweather.repository.Repository
+import ru.osmanov.myweather.repository.RepositoryImpl
 import java.lang.Thread.sleep
 
 class MainViewModel(
