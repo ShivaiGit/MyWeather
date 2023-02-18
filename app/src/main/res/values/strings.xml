@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyWeather</string>
+    <string name="cityNameDerbent">Дербент</string>
+    <string name="city_coordinates">lt/ln: 42.057669, 48.288776</string>
+    <string name="tempLabel">Температура</string>
+    <string name="defaultTempValue">0</string>
+    <string name="feelsLikeLabel">Ощущается как</string>
+    <string name="defaultFeelsLikeValue">0</string>
 </resources>
