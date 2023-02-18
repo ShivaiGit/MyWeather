@@ -1,6 +1,5 @@
 package ru.osmanov.myweather.ui.main
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.osmanov.myweather.AppState

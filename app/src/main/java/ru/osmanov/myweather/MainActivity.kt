@@ -1,7 +1,7 @@
 package ru.osmanov.myweather
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ru.osmanov.myweather.databinding.ActivityMainBinding
 import ru.osmanov.myweather.ui.main.MainFragment
 
