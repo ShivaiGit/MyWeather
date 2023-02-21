@@ -13,9 +13,9 @@ import ru.osmanov.myweather.repository.Weather
 import ru.osmanov.myweather.databinding.FragmentMainBinding
 import ru.osmanov.myweather.viewmodel.MainViewModel
 
-class MainFragment : Fragment() {
+class DetailsFragment : Fragment() {
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = DetailsFragment()
     }
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -35,12 +35,12 @@ class MainFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.getLiveData().observe(viewLifecycleOwner) { renderData(it) }
-    // если Данные, которые хранит LiveData, изменятся, Observer сразу об этом узнает и вызовет метод renderData, куда передаст новые данные
-        viewModel.getWeatherFromLocaleSource()
+/*// если Данные, которые хранит LiveData, изменятся, Observer сразу об этом узнает и вызовет метод renderData, куда передаст новые данные
+        viewModel.getWeatherFromLocaleSource()*/
     }
 
     private fun renderData(appState: AppState) { //В качестве аргумента renderData принимает объект, возвращаемый LiveData
-        when (appState) {
+   /*     when (appState) {
             is AppState.Success -> {
                 val weatherData = appState.weatherData
                 binding.loadingLayout.visibility = View.GONE
@@ -57,18 +57,18 @@ class MainFragment : Fragment() {
                     .setAction("Перезапуск") { viewModel.getWeatherFromLocaleSource() }
                     .show()
             }
-        }
+        }*/
     }
 
     private fun setDate(weatherData: Weather) {
-        //устанавливаем полученные значения в наши вьюшки
+/*        //устанавливаем полученные значения в наши вьюшки
         binding.cityName.text = weatherData.city.city
         binding.cityCoordinates.text = String.format(getString(R.string.city_coordinates),
         weatherData.city.lat.toString(),
         weatherData.city.lon.toString())
 
         binding.tempValue.text = weatherData.temperature.toString()
-        binding.feelsLikeValue.text = weatherData.feelsLike.toString()
+        binding.feelsLikeValue.text = weatherData.feelsLike.toString()*/
     }
 
 
