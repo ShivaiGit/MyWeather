@@ -5,7 +5,11 @@ class RepositoryImpl: Repository {
         return Weather()
     }
 
-    override fun getWeatherFromLocaleStorage(): Weather {
-        return Weather()
+    override fun getWeatherFromLocaleStorageRus(): List<Weather> {
+        return getRussianCities()
     }
+    override fun getWeatherFromLocaleStorageDag(): List<Weather> {
+        return getCitiesDagestan()
+    }
+
 }
