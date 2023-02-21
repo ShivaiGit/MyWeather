@@ -13,16 +13,21 @@ class MainViewModel(
     ViewModel() {
 
     fun getLiveData() = liveDataToObserve
-    fun getWeatherFromLocaleSource() = getDataFromLocalSource()
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource()
+    fun getWeatherFromLocaleSourceRus() = getDataFromLocalSource(isRussian = true)
+    fun getWeatherFromLocaleSourceDag() = getDataFromLocalSource(isRussian = false)
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
 
     //Имитирует запрос к БД или ещё какому-то источнику данных в приложении
-    private fun getDataFromLocalSource() {
-        liveDataToObserve.value = AppState.Loading // меняем состояние приложения на "Идет загрузка"
+    private fun getDataFromLocalSource(isRussian: Boolean) {
+        liveDataToObserve.value = AppState.Loading
         Thread {
-            sleep(1000)
-            liveDataToObserve.postValue(AppState.Success(repositoryImpl.getWeatherFromLocaleStorage()))
+            sleep(1000) //имитируем процесс загрузки в приложении
+            liveDataToObserve.postValue(
+                AppState.Success(
+                    if (isRussian) repositoryImpl.getWeatherFromLocaleStorageRus()
+                    else repositoryImpl.getWeatherFromLocaleStorageDag()
+                )
+            )
         }.start()
     }
-
 }
