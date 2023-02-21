@@ -1,4 +1,4 @@
-package ru.osmanov.myweather.view
+package ru.osmanov.myweather.view.main
 
 import android.os.Bundle
 import android.view.LayoutInflater

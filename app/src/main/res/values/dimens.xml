@@ -3,7 +3,7 @@
     <dimen name="FAB_imageSize">56dp</dimen>
     <dimen name="FAB_margin">20dp</dimen>
     <dimen name="recyclerTextView_padding">16dp</dimen>
-    <dimen name="recycleItemTextView_textSize">18sp</dimen>
+    <dimen name="recycleItemTextView_textSize">20sp</dimen>
     <dimen name="veiwLineSize">1dp</dimen>
     <dimen name="veiwlineMarginEnd">15dp</dimen>
 </resources>

@@ -21,7 +21,6 @@ class MainViewModel(
     private fun getDataFromLocalSource(isRussian: Boolean) {
         liveDataToObserve.value = AppState.Loading
         Thread {
-            sleep(1000) //имитируем процесс загрузки в приложении
             liveDataToObserve.postValue(
                 AppState.Success(
                     if (isRussian) repositoryImpl.getWeatherFromLocaleStorageRus()

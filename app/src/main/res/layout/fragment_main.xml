@@ -18,9 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/FAB_margin"
-        android:backgroundTint="@color/black"
         android:contentDescription="@string/FAB_text"
         android:src="@drawable/russia"
+        app:tint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="@dimen/FAB_imageSize" />

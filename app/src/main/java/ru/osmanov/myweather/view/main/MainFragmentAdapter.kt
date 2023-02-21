@@ -1,4 +1,4 @@
-package ru.osmanov.myweather.view
+package ru.osmanov.myweather.view.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +39,7 @@ class MainFragmentAdapter : RecyclerView.Adapter<MainFragmentAdapter.MainViewHol
             itemView.findViewById<TextView>(R.id.mainFragmentRecycleItemTextView).text =
                 weather.city.city
             itemView.setOnClickListener {
-                Toast.makeText(itemView.context, weather.city.city, Toast.LENGTH_LONG).show()
+                Toast.makeText(itemView.context, weather.city.city, Toast.LENGTH_SHORT).show()
             }
         }
     }
