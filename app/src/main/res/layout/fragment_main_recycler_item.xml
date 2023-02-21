@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mainFragmentRecycleItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/recyclerTextView_padding"
+        android:textSize="@dimen/recycleItemTextView_textSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Москва" />
+
+    <!-- разделяющая полоска между TextView-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/veiwLineSize"
+        android:layout_marginEnd="@dimen/veiwlineMarginEnd"
+        android:background="@color/viewLineColorBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainFragmentRecycleItemTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

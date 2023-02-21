@@ -6,4 +6,5 @@
     <string name="defaultTempValue">0</string>
     <string name="feelsLikeLabel">Ощущается как</string>
     <string name="defaultFeelsLikeValue">0</string>
+    <string name="FAB_text">text</string>
 </resources>
