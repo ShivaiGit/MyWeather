@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.osmanov.myweather.R
 import ru.osmanov.myweather.databinding.FragmentMainBinding
+import ru.osmanov.myweather.repository.Weather
 import ru.osmanov.myweather.viewmodel.AppState
 import ru.osmanov.myweather.viewmodel.MainViewModel
 
@@ -73,7 +74,13 @@ class MainFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance () = MainFragment()
+        fun newInstance() = MainFragment()
     }
+
+    // интерфейс, чтобы передавать данные между адаптером списка и фрагментом
+    interface OnItemViewClickListener {
+        fun onItemViewClick(weather: Weather)
+    }
+
 
 }
