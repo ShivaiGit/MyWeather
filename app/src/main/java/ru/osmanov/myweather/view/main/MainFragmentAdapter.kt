@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.osmanov.myweather.R
 import ru.osmanov.myweather.repository.Weather
 
-class MainFragmentAdapter : RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
+class MainFragmentAdapter(
+    private var onItemViewClickListener:
+    MainFragment.OnItemViewClickListener?
+) : RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
     private var weatherData: List<Weather> = listOf()
 
@@ -39,9 +42,14 @@ class MainFragmentAdapter : RecyclerView.Adapter<MainFragmentAdapter.MainViewHol
             itemView.findViewById<TextView>(R.id.mainFragmentRecycleItemTextView).text =
                 weather.city.city
             itemView.setOnClickListener {
-                Toast.makeText(itemView.context, weather.city.city, Toast.LENGTH_SHORT).show()
+                // вызываем слушателя по нажатию на элемент
+                onItemViewClickListener?.onItemViewClick(weather)
             }
         }
     }
 
+    // для утечек памяти, вызывается в методе onDestroy фрагмента MainFragment
+    fun removeListener() {
+        onItemViewClickListener = null
+    }
 }
