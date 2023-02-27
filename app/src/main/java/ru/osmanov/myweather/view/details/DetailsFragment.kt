@@ -5,73 +5,52 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import ru.osmanov.myweather.viewmodel.AppState
-import ru.osmanov.myweather.repository.Weather
+import ru.osmanov.myweather.R
+import ru.osmanov.myweather.databinding.FragmentDetailsBinding
 import ru.osmanov.myweather.databinding.FragmentMainBinding
-import ru.osmanov.myweather.viewmodel.MainViewModel
+import ru.osmanov.myweather.repository.Weather
 
 class DetailsFragment : Fragment() {
-    companion object {
-        fun newInstance() = DetailsFragment()
-    }
-    private var _binding: FragmentMainBinding? = null
+
+    private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val weather = arguments?.getParcelable<Weather>(BUNDLE_EXTRA)
+        //если бандл == null, то и weather будет == nul
+        if (weather != null) {
+            val city = weather.city
+            binding.cityName.text = city.city
+            binding.cityCoordinates.text = String.format(
+                getString(R.string.city_coordinates),
+                city.lat.toString(),
+                city.lon.toString()
+            )
+            binding.tempValue.text = weather.temperature.toString()
+            binding.feelsLikeValue.text = weather.feelsLike.toString()
+        }
 
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.getLiveData().observe(viewLifecycleOwner) { renderData(it) }
-/*// если Данные, которые хранит LiveData, изменятся, Observer сразу об этом узнает и вызовет метод renderData, куда передаст новые данные
-        viewModel.getWeatherFromLocaleSource()*/
     }
 
-    private fun renderData(appState: AppState) { //В качестве аргумента renderData принимает объект, возвращаемый LiveData
-   /*     when (appState) {
-            is AppState.Success -> {
-                val weatherData = appState.weatherData
-                binding.loadingLayout.visibility = View.GONE
-                setDate(weatherData)
-            }
-            //если идет загрузка отображается иконка загрузки
-            is AppState.Loading -> {
-                binding.loadingLayout.visibility = View.VISIBLE
-            }
-            is AppState.Error -> {
-                binding.loadingLayout.visibility = View.GONE
-                Snackbar
-                    .make(binding.mainView, "Ошибка загрузки", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Перезапуск") { viewModel.getWeatherFromLocaleSource() }
-                    .show()
-            }
-        }*/
-    }
-
-    private fun setDate(weatherData: Weather) {
-/*        //устанавливаем полученные значения в наши вьюшки
-        binding.cityName.text = weatherData.city.city
-        binding.cityCoordinates.text = String.format(getString(R.string.city_coordinates),
-        weatherData.city.lat.toString(),
-        weatherData.city.lon.toString())
-
-        binding.tempValue.text = weatherData.temperature.toString()
-        binding.feelsLikeValue.text = weatherData.feelsLike.toString()*/
+    companion object {
+        const val BUNDLE_EXTRA = "weather"
+        fun newInstance(bundle: Bundle): DetailsFragment {
+            //передаётся бандл с данными о городе
+            val fragment = DetailsFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
