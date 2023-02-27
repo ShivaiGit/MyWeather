@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import ru.osmanov.myweather.R
 import ru.osmanov.myweather.databinding.FragmentMainBinding
 import ru.osmanov.myweather.repository.Weather
+import ru.osmanov.myweather.view.details.DetailsFragment
 import ru.osmanov.myweather.viewmodel.AppState
 import ru.osmanov.myweather.viewmodel.MainViewModel
 
@@ -20,7 +21,23 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: MainViewModel
-    private val adapter = MainFragmentAdapter()
+
+    private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
+/*обращаемся к менеджеру фрагментов через активити и создаём
+бандл. Добавляем в бандл получаемый класс и открываем новый фрагмент*/
+        override fun onItemViewClick(weather: Weather) {
+            val manager = activity?.supportFragmentManager
+            if (manager != null) {
+                val bundle = Bundle()
+                bundle.putParcelable(DetailsFragment.BUNDLE_EXTRA, weather)
+                manager.beginTransaction()
+                    .add(R.id.container, DetailsFragment.newInstance(bundle))
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
+            }
+        }
+    })
+
     private var isDataSetRus: Boolean = true
 
     override fun onCreateView(
@@ -42,6 +59,11 @@ class MainFragment : Fragment() {
         })
         viewModel.getWeatherFromLocaleSourceRus()
 
+    }
+
+    override fun onDestroy() {
+        adapter.removeListener() //следит за утечками, удаляет слушатель из адаптера
+        super.onDestroy()
     }
 
     private fun renderData(appState: AppState) {
